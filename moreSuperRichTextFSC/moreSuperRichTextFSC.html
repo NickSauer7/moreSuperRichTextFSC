@@ -1,0 +1,114 @@
+<!--
+Flow Lightning Web Component:  superRichTextFSL
+Created By:  Nick Sauer
+Created Date:  06/25/2020
+-->
+
+<template>
+
+    <!-- Start Rich Text Input Section-->
+    <div>
+        <lightning-input-rich-text value={richText} onchange={handleTextChange}>
+        </lightning-input-rich-text>
+    </div>
+    <!-- End Rich Text Input Section-->
+
+    <!-- Start Large Buttons Option:  If full buttons is set to true, then we will show the full buttons and text-->
+    <template if:true={fullButton}>
+        <br />
+        <div style="height:50px" class="slds-grid slds-wrap slds-align_absolute-center slds-p-around_xx-small">
+            <div class="slds-p-around_xx-small">
+                <lightning-input type="text" label="Search for Value" placeholder="Replace Text" value={searchTerm}
+                    onchange={handleSearchChange}></lightning-input>
+            </div>
+            <div class="slds-p-around_xx-small">
+                <lightning-input type="text" label="Replace with Value" placeholder="Replace With" value={replaceValue}
+                    onchange={handleReplaceChange}></lightning-input>
+            </div>
+            <div class="slds-p-around_xx-small">
+                <br />
+                <lightning-button variant="success" label="Search and Replace" onclick={searchReplace}
+                    icon-name="utility:search"></lightning-button><br />
+            </div>
+        </div><br /><br />
+        <div class="slds-grid slds-gutters slds-grid_align-center">
+            <template if:true={allowBack}>
+                <div style="height:50px" class="slds-col slds-p-around_xx-small">
+                    <lightning-button variant="destructive" label="Go Back" onclick={handleGoBack}
+                        icon-name="utility:skip_back"></lightning-button>
+                </div>
+            </template>
+            <div style="height:50px" class="slds-col slds-p-around_xx-small">
+                <lightning-button variant="brand" label="Apply Suggested Terms" onclick={applySuggested}
+                    icon-name="utility:merge"></lightning-button>
+            </div>
+            <template if:true={allowRevert}>
+                <div style="height:50px" class="slds-col slds-p-around_xx-small">
+                    <lightning-button variant="destructive" label="Revert Last Change" onclick={handleRevert}
+                        icon-name="utility:delete"></lightning-button>
+                </div>
+            </template>
+            <div style="height:50px" class="slds-col slds-p-around_xx-small">
+                <lightning-button variant="brand" label="Save and Exit" onclick={handleGoNext} icon-name="utility:save">
+                </lightning-button>
+            </div>
+        </div>
+    </template>
+    <!-- End Large Buttons Option:  If full buttons is set to true, then we will show the full buttons and text-->
+
+    <!-- Start In-Line Actions:  If full buttons is set to false, then we will show the small in-line actions-->
+    <template if:false={fullButton}>
+        <div class="slds-grid slds-wrap slds-p-around_xx-small lgc-bg">
+            <!-- Button section start (Icon Buttons)-->
+            <div class="slds-p-around_xx-small">
+                <template if:true={allowBack}>
+                    <lightning-button-icon variant="brand" size="large" icon-name="action:back" icon-class="destruct"
+                        onclick={handleGoBack} alternative-text="Go Back" tooltip="Go Back"></lightning-button-icon>
+                </template>
+            </div>
+            <div class="slds-p-top_small">
+                <lightning-icon varian="brand" size="x-small" icon-name="utility:back"></lightning-icon>
+            </div>
+            <div class="slds-p-around_xx-small">
+                <lightning-button-icon variant="brand" size="large" icon-name="action:preview"
+                    onclick={handleOpenSearch} alternative-text="Search and Replace" tooltip="Search and Replace">
+                </lightning-button-icon>
+            </div>
+            <template if:true={searchButton}>
+                <div class="slds-p-around_xx-small">
+                    <lightning-input type="text" placeholder="Search Text" variant="label-hidden" value={searchTerm}
+                        onchange={handleSearchChange}></lightning-input>
+                </div>
+                <div class="slds-p-around_xx-small">
+                    <lightning-input type="text" placeholder="Replace with Text" variant="label-hidden"
+                        value={replaceValue} onchange={handleReplaceChange}></lightning-input>
+                </div>
+                <div class="slds-p-around_xx-small">
+                    <lightning-button-icon variant="brand" size="large" icon-name="action:check" onclick={searchReplace}
+                        alternative-text="Search and Replace" tooltip="Search and Replace"></lightning-button-icon>
+                </div>
+            </template>
+            <div class="slds-p-around_xx-small">
+                <lightning-button-icon variant="brand" size="large" icon-name="action:sort" onclick={applySuggested}
+                    alternative-text="Apply Suggested Terms" tooltip="Apply Suggested Terms"></lightning-button-icon>
+            </div>
+            <template if:true={allowRevert}>
+                <div class="slds-p-around_xx-small">
+                    <lightning-button-icon variant="brand" size="large" icon-name="action:recall" icon-class="destruct"
+                        onclick={handleRevert} alternative-text="Revert Last Change" tooltip="Revert Last Change">
+                    </lightning-button-icon>
+                </div>
+            </template>
+            <div class="slds-p-top_small">
+                <lightning-icon varian="brand" size="x-small" icon-name="utility:forward"></lightning-icon>
+            </div>
+            <div class="slds-p-around_xx-small">
+                <lightning-button-icon variant="brand" icon-name="action:goal" onclick={handleGoNext}
+                    alternative-text="Save and Next" tooltip="Save and Next"></lightning-button-icon>
+            </div>
+            <!-- Button section end (Icon Buttons)-->
+        </div>
+    </template>
+    <!-- End In-Line Actions:  If full buttons is set to false, then we will show the small in-line actions-->
+
+</template>
