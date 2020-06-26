@@ -32,10 +32,11 @@ export default class moreSuperRichTextFSC extends LightningElement {
     @track wordsNotAllowed;
     @track oldRichText;
     @track searchButton = false;
+    @track searchTrue = false;
+    @track allowRevert = false;
     replaceMap = {};
     regTerm = '';
     applyTerm = '';
-    @track allowRevert = false;
     symbolTitle = 'Invalid Symbols';
     wordTitle = 'Invalid Words';
     errorTitle = 'Cannot Save - Invalid Symbols/Words';
@@ -107,6 +108,7 @@ export default class moreSuperRichTextFSC extends LightningElement {
 
     //Handle initiation of Search and Replace
     handleOpenSearch(event) {
+        this.selectTrue = !this.selectTrue;
         if (this.searchButton) this.searchButton = false;
         else this.searchButton = true;
     }

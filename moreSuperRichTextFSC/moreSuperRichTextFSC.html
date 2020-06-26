@@ -60,50 +60,46 @@ Created Date:  06/25/2020
     <template if:false={fullButton}>
         <div class="slds-grid slds-wrap slds-p-around_xx-small lgc-bg">
             <!-- Button section start (Icon Buttons)-->
-            <div class="slds-p-around_xx-small">
+            <div class="slds-p-around_xxx-small">
                 <template if:true={allowBack}>
-                    <lightning-button-icon variant="brand" size="large" icon-name="action:back" icon-class="destruct"
+                    <lightning-button-icon variant="border-filled" size="large" icon-name="utility:back" 
                         onclick={handleGoBack} alternative-text="Go Back" tooltip="Go Back"></lightning-button-icon>
                 </template>
             </div>
-            <div class="slds-p-top_small">
-                <lightning-icon varian="brand" size="x-small" icon-name="utility:back"></lightning-icon>
-            </div>
-            <div class="slds-p-around_xx-small">
-                <lightning-button-icon variant="brand" size="large" icon-name="action:preview"
-                    onclick={handleOpenSearch} alternative-text="Search and Replace" tooltip="Search and Replace">
-                </lightning-button-icon>
-            </div>
-            <template if:true={searchButton}>
-                <div class="slds-p-around_xx-small">
-                    <lightning-input type="text" placeholder="Search Text" variant="label-hidden" value={searchTerm}
-                        onchange={handleSearchChange}></lightning-input>
+            <lightning-button-group>
+                <div class="slds-p-right_xxx-small slds-p-left_small slds-p-top_xxx-small slds-p-bottom_xxx-small">
+                    <lightning-button-icon-stateful variant="border-filled" size="large" icon-name="utility:search" selected={selectTrue}
+                        onclick={handleOpenSearch} alternative-text="Search and Replace" tooltip="Search and Replace">
+                    </lightning-button-icon-stateful>
                 </div>
-                <div class="slds-p-around_xx-small">
-                    <lightning-input type="text" placeholder="Replace with Text" variant="label-hidden"
-                        value={replaceValue} onchange={handleReplaceChange}></lightning-input>
+                <template if:true={searchButton}>
+                    <div class="slds-p-around_xxx-small">
+                        <lightning-input type="text" placeholder="Search Text" variant="label-hidden" value={searchTerm}
+                            onchange={handleSearchChange}></lightning-input>
+                    </div>
+                    <div class="slds-p-around_xxx-small">
+                        <lightning-input type="text" placeholder="Replace with Text" variant="label-hidden"
+                            value={replaceValue} onchange={handleReplaceChange}></lightning-input>
+                    </div>
+                    <div class="slds-p-left_xxx-small slds-p-right_small slds-p-top_xxx-small slds-p-bottom_xxx-small">
+                        <lightning-button-icon variant="brand" size="large" icon-name="utility:check"
+                            onclick={searchReplace} alternative-text="Search and Replace" tooltip="Search and Replace"></lightning-button-icon>
+                    </div>
+                </template>
+                <div class="slds-p-around_xxx-small">
+                    <lightning-button-icon variant="border-filled" size="large" icon-name="utility:merge" onclick={applySuggested}
+                        alternative-text="Apply Suggested Terms" tooltip="Apply Suggested Terms"></lightning-button-icon>
                 </div>
-                <div class="slds-p-around_xx-small">
-                    <lightning-button-icon variant="brand" size="large" icon-name="action:check" onclick={searchReplace}
-                        alternative-text="Search and Replace" tooltip="Search and Replace"></lightning-button-icon>
-                </div>
-            </template>
-            <div class="slds-p-around_xx-small">
-                <lightning-button-icon variant="brand" size="large" icon-name="action:sort" onclick={applySuggested}
-                    alternative-text="Apply Suggested Terms" tooltip="Apply Suggested Terms"></lightning-button-icon>
-            </div>
-            <template if:true={allowRevert}>
-                <div class="slds-p-around_xx-small">
-                    <lightning-button-icon variant="brand" size="large" icon-name="action:recall" icon-class="destruct"
-                        onclick={handleRevert} alternative-text="Revert Last Change" tooltip="Revert Last Change">
-                    </lightning-button-icon>
-                </div>
-            </template>
-            <div class="slds-p-top_small">
-                <lightning-icon varian="brand" size="x-small" icon-name="utility:forward"></lightning-icon>
-            </div>
-            <div class="slds-p-around_xx-small">
-                <lightning-button-icon variant="brand" icon-name="action:goal" onclick={handleGoNext}
+                <template if:true={allowRevert}>
+                    <div class="slds-p-around_xxx-small">
+                        <lightning-button-icon variant="border-filled" size="large" icon-name="utility:undo" 
+                            onclick={handleRevert} alternative-text="Revert Last Change" tooltip="Revert Last Change">
+                        </lightning-button-icon>
+                    </div>
+                </template>
+            </lightning-button-group>
+            <div class="slds-p-right_xxx-small slds-p-left_small slds-p-top_xxx-small slds-p-bottom_xxx-small">
+                <lightning-button-icon variant="border-filled" icon-name="utility:save" onclick={handleGoNext}
                     alternative-text="Save and Next" tooltip="Save and Next"></lightning-button-icon>
             </div>
             <!-- Button section end (Icon Buttons)-->
